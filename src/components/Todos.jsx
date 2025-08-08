@@ -14,11 +14,12 @@ const Todos = () => {
       if (event.key === "Enter" && editTodo) {
         console.log("edit");
         setTodos((prevList) => {
-          prevList.map(todo => 
+          return prevList.map(todo => 
             todo.id === id ? { ...todo, text: editTodo } : todo
           );
         });
         setEditTodo("");
+        setEditingId(-1);
       }
     } else {
       if (event.key === "Enter" && inputTodo) {
@@ -43,7 +44,6 @@ const Todos = () => {
     setEditingId(id);
   };
 
-  console.log(todos);
 
   return (
     <>
