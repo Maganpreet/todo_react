@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Todo from "./Todo";
+import Input from './Input';
 
 let todos_arr = [];
 
@@ -14,7 +15,7 @@ const Todos = () => {
       if (event.key === "Enter" && editTodo) {
         console.log("edit");
         setTodos((prevList) => {
-          return prevList.map(todo => 
+          return prevList.map((todo) =>
             todo.id === id ? { ...todo, text: editTodo } : todo
           );
         });
@@ -23,7 +24,7 @@ const Todos = () => {
       }
     } else {
       if (event.key === "Enter" && inputTodo) {
-        console.log("insert")
+        console.log("insert");
         setTodos((prevList) => {
           return [
             ...prevList,
@@ -44,22 +45,20 @@ const Todos = () => {
     setEditingId(id);
   };
 
-
   return (
     <>
       {todos.length > 0 && (
-        <ol className="todo_list_container list-decimal list-inside text-2xl font-medium">
+        <ol className="todo_list_container list-decimal list-outside text-2xl">
           {todos.map((todo) =>
             editingId === todo.id ? (
-              <input
+              <Input
                 key={todo.id}
-                type="text"
-                name="todo"
-                onChange={(e) => setEditTodo(e.target.value)}
-                onKeyDown={(e) => handleEnter(e, todo.id, "edit")}
-                className="border-b ml-4 border-gray-700 w-2xl text-2xl focus:outline-none"
+                todoId={todo.id}
+                todoSetter={setEditTodo}
+                enterHandler={handleEnter}
                 value={editTodo}
-              ></input>
+                inputType={"edit"}
+              ></Input>
             ) : (
               <Todo
                 key={todo.id}
@@ -73,15 +72,14 @@ const Todos = () => {
           )}
         </ol>
       )}
-      <input
-        type="text"
-        name="todo"
-        onChange={(e) => setInputTodo(e.target.value)}
-        onKeyDown={(e) => handleEnter(e, null, "insert")}
-        className="border-b ml-4 border-gray-700 w-2xl text-2xl focus:outline-none"
+      <Input
+        todoId={null}
+        todoSetter={setInputTodo}
+        enterHandler={handleEnter}
         value={inputTodo}
-        placeholder="Add a Todo"
-      />
+        inputType={"insert"}
+        placeholder={"Add a Todo"}
+      ></Input>
     </>
   );
 };

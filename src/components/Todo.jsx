@@ -4,15 +4,17 @@ import { CiEdit } from "react-icons/ci";
 const Todo = ({ id, text, completed, onEdit, onDelete }) => {
   return (
     <div id={id} className="flex flex-row items-start justify-start">
-      <li className="pl-3 basis-1/3">
+      <li className="w-104 text-red-300 text-xl ml-10 pl-2 hover:bg-linear-to-r from-gray-900 via-gray-700 to-gray-500 border-1 border-gray-100 rounded-sm">
         {text}
       </li>
-      <button onClick={() => onEdit(id, text)} className="basis-1/3">
-        <CiEdit className="text-xl text-gray-700" />
-      </button>
-      <button onClick={() => onDelete(id)} className="basis-1/3">
-        <RxCross1 className="text-xl text-gray-700" />
-      </button>
+      <span className="flex flex-row">
+          <button onClick={() => onEdit(id, text)} className="">
+            <CiEdit className="w-10 h-8 text-xl text-gray-300" />
+          </button>
+          <button onClick={() => onDelete(id)} className="">
+            <RxCross1 className="w-10 h-8 text-xl text-gray-300" />
+          </button>
+        </span>
     </div>
   );
 };
