@@ -1,3 +1,7 @@
+# Left Over Work:
+- Introduce a Django and Postgres backend.
+- Figure out the ID issue (might get fixed once you have backend)
+---
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
